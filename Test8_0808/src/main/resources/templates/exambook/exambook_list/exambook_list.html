@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서목록</title>
+    <link rel="stylesheet" type="text/css" href="/lib/css/common.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="containerbody">
+            <!-- main -->
+            <div id="category" value="exambook"></div>
+            <div class="main">
+                <div class="details">
+                    <!-- order details list -->
+                    <div class="recentOrders">
+                        <div class="calheader">
+                            <h2>도서 목록</h2>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr class="topbanner">
+                                    <td class="bkUid">도서번호</td>
+                                    <td class="bkTitle">도서제목</td>
+                                    <td class="bkSummary">도서소개</td>
+                                    <td class="bkPrice">도서가격</td>
+                                    <td class="bkViewcnt">조회수</td>
+                                    <td class="bkRegdate">등록일</td>
+                                </tr>
+                            </thead>
+
+                            <tbody id="itemList">
+                            <tr v-for="(dto,i) in itemList"
+                                :key="i"
+                                @click='locate(dto.bkUid)'>
+                                    <td class="bkUid">{{dto.bkUid}}</td>
+                                    <td class="bkTitle">{{dto.bkTitle}}</td>
+                                    <td class="bkSummary">{{dto.bkSummary}}</td>
+                                    <td class="bkPrice">{{dto.bkPrice}}</td>
+                                    <td class="bkViewcnt">{{dto.bkViewcnt}}</td>
+                                    <td class="bkRegdate">{{dto.bkRegdate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="display: flex; justify-content: right">
+                            <button type="button" class="button register" style="margin-top: 20px" value="등록" onclick="location.href='/exambook/regist'">등록</button>
+                        </div>
+
+                        <div class="paging" id="pageNum"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--아이콘 사용을 위한 설치 스크립트-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/lib/js/pagination.js"></script>
+</body>
+
+</html>
